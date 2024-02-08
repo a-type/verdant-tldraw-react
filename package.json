@@ -10,6 +10,13 @@
       "default": "./dist/esm/index.js"
     }
   },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "demo:generate": "verdant generate --s ./example/schema.ts --o ./example/client --react --module=esm",
     "demo:dev": "vite --config ./example/vite.config.js ./example",
