@@ -99,7 +99,7 @@ export function useVerdantStore({
           store.put(
             Object.values(peers)
               .map((p) => p.presence.tlDraw)
-              .filter(Boolean),
+              .filter((p): p is TLInstancePresence => !!p),
           );
         });
       }),

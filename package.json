@@ -1,5 +1,5 @@
 {
-  "name": "verdant-tldraw-react",
+  "name": "@a-type/verdant-tldraw-react",
   "version": "1.0.0",
   "description": "",
   "type": "module",
@@ -13,7 +13,8 @@
   "scripts": {
     "demo:generate": "verdant generate --s ./example/schema.ts --o ./example/client --react --module=esm",
     "demo:dev": "vite --config ./example/vite.config.js ./example",
-    "demo:sync": "verdant-server"
+    "demo:sync": "verdant-server",
+    "build": "tsc"
   },
   "keywords": [],
   "dependencies": {
@@ -35,7 +36,8 @@
     "@verdant-web/react": "^25.0.3",
     "vite": "^5.0.12",
     "@vitejs/plugin-react-swc": "^3.6.0",
-    "@types/node": "^20.11.16"
+    "@types/node": "^20.11.16",
+    "typescript": "5.3.3"
   },
   "author": "Grant Forrest <gaforres@gmail.com>",
   "license": "MIT"
