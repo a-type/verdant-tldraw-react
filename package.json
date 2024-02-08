@@ -1,0 +1,42 @@
+{
+  "name": "verdant-tldraw-react",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/esm/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "default": "./dist/esm/index.js"
+    }
+  },
+  "scripts": {
+    "demo:generate": "verdant generate --s ./example/schema.ts --o ./example/client --react --module=esm",
+    "demo:dev": "vite --config ./example/vite.config.js ./example",
+    "demo:sync": "verdant-server"
+  },
+  "keywords": [],
+  "dependencies": {
+    "@tldraw/tldraw": "2.0.0-alpha.19"
+  },
+  "peerDependencies": {
+    "@verdant-web/store": "^3.0.0",
+    "@verdant-web/react": "^25.0.0",
+    "react": "^18.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "18.2.54",
+    "@types/react-dom": "18.2.19",
+    "react": "^18.2.0",
+    "react-dom": "18.2.0",
+    "@verdant-web/server": "^2.0.5",
+    "@verdant-web/cli": "^4.2.1",
+    "@verdant-web/store": "^3.0.6",
+    "@verdant-web/react": "^25.0.3",
+    "vite": "^5.0.12",
+    "@vitejs/plugin-react-swc": "^3.6.0",
+    "@types/node": "^20.11.16"
+  },
+  "author": "Grant Forrest <gaforres@gmail.com>",
+  "license": "MIT"
+}
