@@ -1,6 +1,6 @@
 import { Client } from '@verdant-web/store';
 import { Drawing } from './schema.js';
-import { useEffect, useState } from 'react';
+import { useEffect, useId, useState } from 'react';
 import {
   createTLStore,
   TLAnyShapeUtilConstructor,
@@ -29,6 +29,7 @@ export function useVerdantStore({
   drawing: Drawing | null;
   shapeUtils?: TLAnyShapeUtilConstructor[];
 }) {
+  const fallbackId = useId();
   const [store] = useState(() => {
     return createTLStore({
       shapeUtils: [...defaultShapeUtils, ...shapeUtils],
@@ -118,7 +119,7 @@ export function useVerdantStore({
 
     // use replicaId, not profile ID, so multiple replicas under the same
     // profile have different cursors
-    const awarenessId = client.sync.presence.self.replicaId;
+    const awarenessId = client.sync.presence.self.replicaId ?? fallbackId;
     setUserPreferences({ id: awarenessId });
 
     const userPreferences = computed<{
@@ -179,7 +180,7 @@ export function useVerdantStore({
       unsubs.forEach((fn) => fn());
       unsubs.length = 0;
     };
-  }, [drawing, store, client]);
+  }, [drawing, store, client, fallbackId]);
 
   return storeWithStatus;
 }
