@@ -21,7 +21,8 @@
     "demo:generate": "verdant generate --s ./example/schema.ts --o ./example/client --react --module=esm",
     "demo:dev": "vite --config ./example/vite.config.js ./example",
     "demo:sync": "verdant-server",
-    "build": "tsc"
+    "build": "tsc",
+    "prepublishOnly": "pnpm run build"
   },
   "keywords": [],
   "dependencies": {
