@@ -177,7 +177,14 @@ export function useVerdantStore({
     );
 
     return () => {
-      unsubs.forEach((fn) => fn());
+      unsubs.forEach((fn) => {
+        try {
+          fn();
+          // i've had issues with some of these
+        } catch (err) {
+          console.error(err);
+        }
+      });
       unsubs.length = 0;
     };
   }, [drawing, store, client, fallbackId]);
