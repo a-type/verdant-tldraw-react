@@ -1,5 +1,4 @@
-// TODO: provide Verdant tools to make these conform to the schema
-import { ObjectEntity } from '@verdant-web/store';
+import { ObjectEntity, schema } from '@verdant-web/store';
 
 export type Drawing = ObjectEntity<
   {
@@ -163,16 +162,18 @@ const DEFAULT_STORE = {
 // anyway, we don't really have an opinion of what tldraw data
 // looks like internally for schema validation, just provide
 // the default.
-export const drawingSchema = {
-  type: 'object' as const,
-  properties: {
-    store: {
-      type: 'any' as const,
-      default: DEFAULT_STORE.store,
+export const drawingSchema = ({ nullable }: { nullable?: boolean }) =>
+  schema.fields.object({
+    properties: {
+      store: schema.fields.any({
+        default: DEFAULT_STORE.store,
+      }),
+      schema: schema.fields.any({
+        default: DEFAULT_STORE.schema,
+      }),
     },
-    schema: {
-      type: 'any' as const,
-      default: DEFAULT_STORE.schema,
-    },
-  },
-};
+    nullable,
+    // default the root to an empty object so that the other
+    // defaults get applied without the user having to do this
+    default: nullable ? undefined : {},
+  });
